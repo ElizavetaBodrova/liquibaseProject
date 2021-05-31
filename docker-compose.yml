@@ -1,0 +1,14 @@
+version: '3'
+services:
+  database:
+    image: container-registry.oracle.com/database/enterprise:latest
+    ports:
+      - "5500:5500"
+      - "1521:1521"
+    environment:
+      - "ORACLE_PWD=sys"
+    volumes:
+      - "oracle-data:/opt/oracle/oradata"
+      - "./oracle-init/create_user.sql:/opt/oracle/scripts/setup/create_user.sql"
+volumes:
+  oracle-data:
